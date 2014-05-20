@@ -55,24 +55,32 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Tridion.Web.UI.Core">
+      <HintPath>C:\TFS Projects\Content Manager Explorer\Source\Tridion.Web.UI\Tridion.Web.UI.Core\bin\Debug\Tridion.Web.UI.Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Configuration\System.config.sample.xml" />
+    <Content Include="Extensions\ExtendedAreas\Info\Info.ascx" />
+    <Content Include="Extensions\ExtendedAreas\Info\Info.ascx.css">
+      <DependentUpon>Info.ascx</DependentUpon>
+    </Content>
+    <Content Include="Extensions\ExtendedAreas\Info\Info.ascx.js">
+      <DependentUpon>Info.ascx</DependentUpon>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\ExtendedAreas\Info\Info.ascx.cs">
+      <DependentUpon>Info.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Configuration\UIBeardcore.Extension.ExtendedArea.Editor.config">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -99,6 +107,9 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>Copy "$(TargetPath)" "%25ANGUILLA_WEBROOT%25\bin"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
